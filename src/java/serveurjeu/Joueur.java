@@ -5,20 +5,23 @@
  */
 package serveurjeu;
 
+import java.math.BigInteger;
+import java.security.SecureRandom;
+
 public class Joueur {
 
     private String joueurName;
     private String idJoueur;
     private int numJoueur;
 
-    public Joueur(String a) {
+    public Joueur(String a, int b) {
         this.joueurName = a;
         this.idJoueur = generateId();
+        this.numJoueur = b;
     }
 
     private String generateId() {
-        String a="";
-        return a;
+        SecureRandom random = new SecureRandom();
+        return new BigInteger(130, random).toString(32);
     }
-
 }
