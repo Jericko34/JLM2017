@@ -24,4 +24,29 @@ public class Joueur {
         SecureRandom random = new SecureRandom();
         return new BigInteger(130, random).toString(32);
     }
+
+    public String getJoueurName() {
+        return joueurName;
+    }
+
+    public void setJoueurName(String joueurName) {
+        this.joueurName = joueurName;
+    }
+
+    public String getIdJoueur() {
+        return idJoueur;
+    }
+
+    public void setIdJoueur(String idJoueur) {
+        this.idJoueur = idJoueur;
+    }
+
+    public int getNumJoueur() {
+        return numJoueur;
+    }
+
+    public void setNumJoueur(int numJoueur) {
+        this.numJoueur = numJoueur;
+    }
+    
 }
