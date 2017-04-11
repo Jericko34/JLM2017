@@ -18,8 +18,10 @@ public class Partie {
     private Joueur gagne;
     private int ligne;
     private int colone;
+    private static Partie INSTANCE = null;
+    private int nbCoup=0;
 
-    public Partie() {
+    private Partie() {
         tableau = new int[19][19];
         gagnant = false;
     }
@@ -40,8 +42,8 @@ public class Partie {
         if (tableau[a][b] == 0) {
             int val = getJoueurNum(c);
             tableau[a][b] = val;
-            this.ligne=a;
-            this.colone=b;
+            this.ligne = a;
+            this.colone = b;
             return 1;
         } else {
             return 0;
@@ -107,5 +109,10 @@ public class Partie {
         } else {
             return 0;
         }
+    }
+
+    public static Partie getInstance() {
+        if (INSTANCE == null){INSTANCE = new Partie();}
+        return INSTANCE;
     }
 }
