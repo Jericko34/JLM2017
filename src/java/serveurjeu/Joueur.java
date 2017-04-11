@@ -13,6 +13,7 @@ public class Joueur {
     private String joueurName;
     private String idJoueur;
     private int numJoueur;
+    private int nbreTenaille;
 
     public Joueur(String a, int b) {
         this.joueurName = a;
@@ -47,6 +48,14 @@ public class Joueur {
 
     public void setNumJoueur(int numJoueur) {
         this.numJoueur = numJoueur;
+    }
+
+    public int getNbreTenaille() {
+        return nbreTenaille;
+    }
+
+    public void setNbreTenaille(int nbreTenaille) {
+        this.nbreTenaille = nbreTenaille;
     }
     
 }
