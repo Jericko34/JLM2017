@@ -10,6 +10,7 @@ package objetjson;
  * @author Benjamin
  */
 public class turn {
+
     private int status;
     private int[][] tableau;
     private int nbTenaillesJ1;
@@ -21,6 +22,23 @@ public class turn {
     private String detailFinPartie;
     private int numTour;
     private int code;
+
+    public turn(int status, int[][] tableau, int nbTenaillesJ1, int nbTenaillesJ2, int dernierCoupX, int dernierCoupY, boolean prolongation, boolean finPartie, String detailFinPartie, int numTour, int code) {
+        this.status = status;
+        this.tableau = tableau;
+        this.nbTenaillesJ1 = nbTenaillesJ1;
+        this.nbTenaillesJ2 = nbTenaillesJ2;
+        this.dernierCoupX = dernierCoupX;
+        this.dernierCoupY = dernierCoupY;
+        this.prolongation = prolongation;
+        this.finPartie = finPartie;
+        this.detailFinPartie = detailFinPartie;
+        this.numTour = numTour;
+        this.code = code;
+    }
+
+    public turn() {
+    }
 
     public int getStatus() {
         return status;
@@ -109,5 +127,5 @@ public class turn {
     public void setCode(int code) {
         this.code = code;
     }
-    
+
 }

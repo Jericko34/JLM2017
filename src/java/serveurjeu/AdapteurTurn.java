@@ -5,6 +5,8 @@
  */
 package serveurjeu;
 
+import objetjson.turn;
+
 /**
  *
  * @author Benjamin
@@ -15,9 +17,18 @@ public class AdapteurTurn {
 
     private AdapteurTurn() {
     }
-    
+
+    public turn demandertours(String a) {
+        if (Partie.getInstance().getJoueurencours().getIdJoueur() != a) {
+            return new turn(0, Partie.getInstance().getTableau(), Partie.getInstance().getJoueur1().getNbreTenaille(), Partie.getInstance().getJoueur2().getNbreTenaille(), Partie.getInstance().getDernierCoupX(), Partie.getInstance().getDernierCoupY(), Partie.getInstance().isProlongation(), Partie.getInstance().isGagnant(), a, Partie.getInstance().getNumTour(), 401);
+        } else {return new turn(0, Partie.getInstance().getTableau(), Partie.getInstance().getJoueur1().getNbreTenaille(), Partie.getInstance().getJoueur2().getNbreTenaille(), Partie.getInstance().getDernierCoupX(), Partie.getInstance().getDernierCoupY(), Partie.getInstance().isProlongation(), Partie.getInstance().isGagnant(), a, Partie.getInstance().getNumTour(), 200);
+        }
+    }
+
     public static AdapteurTurn getInstance() {
-        if (INSTANCE == null){INSTANCE = new AdapteurTurn();}
+        if (INSTANCE == null) {
+            INSTANCE = new AdapteurTurn();
+        }
         return INSTANCE;
     }
 }

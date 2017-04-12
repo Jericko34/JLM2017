@@ -10,7 +10,15 @@ package objetjson;
  * @author Benjamin
  */
 public class play {
+
     private int code;
+
+    public play(int code) {
+        this.code = code;
+    }
+
+    public play() {
+    }
 
     public int getCode() {
         return code;
@@ -19,5 +27,5 @@ public class play {
     public void setCode(int code) {
         this.code = code;
     }
-    
+
 }

@@ -5,6 +5,8 @@
  */
 package serveurjeu;
 
+import objetjson.play;
+
 /**
  *
  * @author Benjamin
@@ -12,7 +14,7 @@ package serveurjeu;
 public class AdapteurPlay {
 
     private static AdapteurPlay INSTANCE = null;
-    
+
     private AdapteurPlay() {
     }
 
@@ -23,13 +25,18 @@ public class AdapteurPlay {
         return INSTANCE;
     }
 
-    public void play(int a, int b, String c) {
-        Chronometre.getInstance().start();
-        if (Partie.getInstance().isJoueurAllowed(c) != true) {
-            System.out.println("va chier");
-        } else if (Chronometre.getInstance().stop()>10) {System.out.println("Fuck off");
-        } else if (Partie.getInstance().positionner(a, b, c) == 1) {
-            System.out.println("OK");
-        } else System.out.println("Pas bon");
+    public play play(int a, int b, String c) {
+        if (Partie.getInstance().getJoueurencours().getIdJoueur() != Partie.getInstance().getjoueurfromid(c).getIdJoueur()) {
+            return new play(401);
+        } else {
+            switch (Partie.getInstance().positionner(a, b, c)) {
+                case 1:
+                    return new play(200);
+                default:
+                    return new play(406);
+
+            }
+        }
     }
+
 }
