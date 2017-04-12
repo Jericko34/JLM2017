@@ -51,6 +51,9 @@ public class connect {
         this.numjoueur = numjoueur;
     }
 
+    public connect() {
+    }
+    
     public connect(String a, int b, String c, int d) {
         this.idjoueur=a;
         this.code=b;

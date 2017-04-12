@@ -12,7 +12,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
-import objetjson.connect;
+import javax.ws.rs.core.Response;
 
 /**
  * REST Web Service
@@ -38,8 +38,9 @@ public class ConnectResource {
     @GET
     @Path("/{joueurName}")
     @Produces(MediaType.APPLICATION_JSON)
-    public connect connect(@PathParam("joueurName") String nomJoueur) {
+    public Response connect(@PathParam("joueurName") String nomJoueur) {
         
-        return serveurjeu.AdaptateurConnection.getInstance().ajouterunjoueur(nomJoueur);
+        objetjson.connect result = serveurjeu.AdaptateurConnection.getInstance().ajouterunjoueur(nomJoueur);
+        return Response.status(Response.Status.OK).entity(result).build();
     }
 }
