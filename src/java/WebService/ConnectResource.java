@@ -9,9 +9,10 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.core.MediaType;
+import objetjson.connect;
 
 /**
  * REST Web Service
@@ -36,10 +37,9 @@ public class ConnectResource {
      */
     @GET
     @Path("/{joueurName}")
-    public String connect(@PathParam("joueurName") String nomJoueur) {
+    @Produces(MediaType.APPLICATION_JSON)
+    public connect connect(@PathParam("joueurName") String nomJoueur) {
         
-        
-        //TODO return proper representation object
-     return String.format("test connect: %s", serveurjeu.Partie.getInstance().ajouterJoueur(nomJoueur));
+        return serveurjeu.AdaptateurConnection.getInstance().ajouterunjoueur(nomJoueur);
     }
 }
