@@ -34,6 +34,7 @@ public class TurnResource {
 
     /**
      * Retrieves representation of an instance of WebService.TurnResource
+     * @param idJoueur
      * @return an instance of java.lang.String
      */
     @GET

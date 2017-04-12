@@ -33,6 +33,7 @@ public class ConnectResource {
 
     /**
      * Retrieves representation of an instance of WebService.ConnectResource
+     * @param nomJoueur
      * @return an instance of java.lang.String
      */
     @GET
