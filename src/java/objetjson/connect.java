@@ -10,6 +10,7 @@ package objetjson;
  * @author Benjamin
  */
 public class connect {
+
     private String idjoueur;
     private int code;
     private String nomjoueur;
@@ -46,5 +47,12 @@ public class connect {
     public void setNumjoueur(int numjoueur) {
         this.numjoueur = numjoueur;
     }
-    
+
+    public connect(String a, int b, String c, int d) {
+        this.idjoueur=a;
+        this.code=b;
+        this.nomjoueur=c;
+        this.numjoueur=d;
+    }
+
 }

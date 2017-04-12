@@ -127,4 +127,13 @@ public class Partie {
         }
         return INSTANCE;
     }
+
+    public Joueur getJoueur1() {
+        return joueur1;
+    }
+
+    public Joueur getJoueur2() {
+        return joueur2;
+    }
+    
 }

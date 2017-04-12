@@ -12,7 +12,7 @@ package serveurjeu;
 public class AdapteurPlay {
 
     private static AdapteurPlay INSTANCE = null;
-
+    
     private AdapteurPlay() {
     }
 
