@@ -5,7 +5,7 @@
  */
 package serveurjeu;
 
-import objetjson.play;
+import MesDTOs.PlayDTO;
 
 /**
  *
@@ -25,15 +25,15 @@ public class AdapteurPlay {
         return INSTANCE;
     }
 
-    public play play(int a, int b, String c) {
+    public PlayDTO play(int a, int b, String c) {
         if (Partie.getInstance().getJoueurencours().getIdJoueur() != Partie.getInstance().getjoueurfromid(c).getIdJoueur()) {
-            return new play(401);
+            return new PlayDTO(401);
         } else {
             switch (Partie.getInstance().positionner(a, b, c)) {
                 case 1:
-                    return new play(200);
+                    return new PlayDTO(200);
                 default:
-                    return new play(406);
+                    return new PlayDTO(406);
 
             }
         }

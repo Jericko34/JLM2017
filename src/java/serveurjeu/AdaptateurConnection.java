@@ -5,7 +5,7 @@
  */
 package serveurjeu;
 
-import objetjson.connect;
+import MesDTOs.ConnectDTO;
 
 /**
  *
@@ -18,14 +18,14 @@ public class AdaptateurConnection {
     private AdaptateurConnection() {
     }
 
-    public connect ajouterunjoueur(String a) {
+    public ConnectDTO ajouterunjoueur(String a) {
         switch (Partie.getInstance().ajouterJoueur(a)) {
             case 1:
-                return new connect(Partie.getInstance().getJoueur1().getIdJoueur(), 200, a, Partie.getInstance().getJoueur1().getNumJoueur());
+                return new ConnectDTO(Partie.getInstance().getJoueur1().getIdJoueur(), 200, a, Partie.getInstance().getJoueur1().getNumJoueur());
             case 2:
-                return new connect(Partie.getInstance().getJoueur2().getIdJoueur(), 200, a, Partie.getInstance().getJoueur2().getNumJoueur());
+                return new ConnectDTO(Partie.getInstance().getJoueur2().getIdJoueur(), 200, a, Partie.getInstance().getJoueur2().getNumJoueur());
             default:
-                return new connect("", 401, a, 0);
+                return new ConnectDTO("", 401, a, 0);
         }
     }
 

@@ -3,21 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package objetjson;
+package MesDTOs;
 
 /**
  *
  * @author Benjamin
  */
-public class play {
+public class PlayDTO {
 
     private int code;
 
-    public play(int code) {
+    public PlayDTO(int code) {
         this.code = code;
     }
 
-    public play() {
+    public PlayDTO() {
     }
 
     public int getCode() {

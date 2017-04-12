@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package objetjson;
+package MesDTOs;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Benjamin
  */
 @XmlRootElement(name="connect")
-public class connect {
+public class ConnectDTO {
 
     private String idjoueur;
     private int code;
@@ -51,17 +51,13 @@ public class connect {
         this.numjoueur = numjoueur;
     }
 
-    public connect() {
+    public ConnectDTO() {
     }
     
-    public connect(String a, int b, String c, int d) {
+    public ConnectDTO(String a, int b, String c, int d) {
         this.idjoueur = a;
         this.code = b;
         this.nomjoueur = c;
         this.numjoueur = d;
     }
-
-    public connect() {
-    }
-
 }

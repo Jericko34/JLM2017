@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package objetjson;
+package MesDTOs;
 
 /**
  *
  * @author Benjamin
  */
-public class turn {
+public class TurnDTO {
 
     private int status;
     private int[][] tableau;
@@ -23,7 +23,7 @@ public class turn {
     private int numTour;
     private int code;
 
-    public turn(int status, int[][] tableau, int nbTenaillesJ1, int nbTenaillesJ2, int dernierCoupX, int dernierCoupY, boolean prolongation, boolean finPartie, String detailFinPartie, int numTour, int code) {
+    public TurnDTO(int status, int[][] tableau, int nbTenaillesJ1, int nbTenaillesJ2, int dernierCoupX, int dernierCoupY, boolean prolongation, boolean finPartie, String detailFinPartie, int numTour, int code) {
         this.status = status;
         this.tableau = tableau;
         this.nbTenaillesJ1 = nbTenaillesJ1;
@@ -37,7 +37,7 @@ public class turn {
         this.code = code;
     }
 
-    public turn() {
+    public TurnDTO() {
     }
 
     public int getStatus() {

@@ -13,6 +13,8 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 /**
  * REST Web Service
@@ -37,9 +39,10 @@ public class PlayResource {
      */
     @GET
     @Path("/{x}/{y}/{idJoueur}")
-    public String play(@PathParam("x") int x,@PathParam("y") int y, @PathParam("idJoueur") String idJoueur) {
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response play(@PathParam("x") int x,@PathParam("y") int y, @PathParam("idJoueur") String idJoueur) {
         
-        //TODO return proper representation object
-       return String.format("test play: %s,%s,%s,", x,y,idJoueur);
+         MesDTOs.PlayDTO result = serveurjeu.AdapteurPlay.getInstance().play(x, y, idJoueur);
+        return Response.status(Response.Status.OK).entity(result).build();
     }
 }

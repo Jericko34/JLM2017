@@ -12,6 +12,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 /**
  * REST Web Service
@@ -36,9 +38,10 @@ public class TurnResource {
      */
     @GET
     @Path("/{idJoueur}")
-    public String turn(@PathParam("idJoueur") String idJoueur) {
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response turn(@PathParam("idJoueur") String idJoueur) {
         
-        //TODO return proper representation object
-        return String.format("test turn: %s", idJoueur);
+        MesDTOs.TurnDTO result = serveurjeu.AdapteurTurn.getInstance().demandertours(idJoueur);
+        return Response.status(Response.Status.OK).entity(result).build();
     }
 }

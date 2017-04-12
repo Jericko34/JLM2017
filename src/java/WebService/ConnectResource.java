@@ -40,7 +40,7 @@ public class ConnectResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response connect(@PathParam("joueurName") String nomJoueur) {
         
-        objetjson.connect result = serveurjeu.AdaptateurConnection.getInstance().ajouterunjoueur(nomJoueur);
+        MesDTOs.ConnectDTO result = serveurjeu.AdaptateurConnection.getInstance().ajouterunjoueur(nomJoueur);
         return Response.status(Response.Status.OK).entity(result).build();
     }
 }
