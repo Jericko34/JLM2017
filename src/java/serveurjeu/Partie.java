@@ -19,7 +19,9 @@ public class Partie {
     private int ligne;
     private int colone;
     private static Partie INSTANCE = null;
-    private int nbCoup=0;
+    private int nbCoup = 0;
+    private Chronometre chrono;
+    private Joueur joueurencours;
 
     private Partie() {
         tableau = new int[19][19];
@@ -111,8 +113,18 @@ public class Partie {
         }
     }
 
+    public boolean isJoueurAllowed(String a) {
+        if (joueur1.getIdJoueur() == a || joueur2.getIdJoueur() == a) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public static Partie getInstance() {
-        if (INSTANCE == null){INSTANCE = new Partie();}
+        if (INSTANCE == null) {
+            INSTANCE = new Partie();
+        }
         return INSTANCE;
     }
 }
