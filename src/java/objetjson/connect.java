@@ -49,10 +49,13 @@ public class connect {
     }
 
     public connect(String a, int b, String c, int d) {
-        this.idjoueur=a;
-        this.code=b;
-        this.nomjoueur=c;
-        this.numjoueur=d;
+        this.idjoueur = a;
+        this.code = b;
+        this.nomjoueur = c;
+        this.numjoueur = d;
+    }
+
+    public connect() {
     }
 
 }
