@@ -12,6 +12,10 @@ package objetjson;
 public class play {
     private int code;
 
+    public play(int code) {
+        this.code = code;
+    }
+
     public int getCode() {
         return code;
     }

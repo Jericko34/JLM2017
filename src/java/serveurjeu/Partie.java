@@ -22,6 +22,11 @@ public class Partie {
     private int nbCoup = 0;
     private Chronometre chrono;
     private Joueur joueurencours;
+    private int dernierCoupX;
+    private int dernierCoupY;
+    private boolean prolongation;
+    private int numTour = 0;
+    private int aquiletours;
 
     private Partie() {
         tableau = new int[19][19];
@@ -113,6 +118,12 @@ public class Partie {
         }
     }
 
+    public Joueur getjoueurfromid(String a) {
+        if (joueur1.getIdJoueur()==a){return joueur1;}
+        else if (joueur2.getIdJoueur()==a){return joueur2;}
+        else return null;
+    }
+
     public boolean isJoueurAllowed(String a) {
         if (joueur1.getIdJoueur() == a || joueur2.getIdJoueur() == a) {
             return true;
@@ -135,5 +146,109 @@ public class Partie {
     public Joueur getJoueur2() {
         return joueur2;
     }
-    
+
+    public int[][] getTableau() {
+        return tableau;
+    }
+
+    public void setTableau(int[][] tableau) {
+        this.tableau = tableau;
+    }
+
+    public boolean isGagnant() {
+        return gagnant;
+    }
+
+    public void setGagnant(boolean gagnant) {
+        this.gagnant = gagnant;
+    }
+
+    public Joueur getGagne() {
+        return gagne;
+    }
+
+    public void setGagne(Joueur gagne) {
+        this.gagne = gagne;
+    }
+
+    public int getLigne() {
+        return ligne;
+    }
+
+    public void setLigne(int ligne) {
+        this.ligne = ligne;
+    }
+
+    public int getColone() {
+        return colone;
+    }
+
+    public void setColone(int colone) {
+        this.colone = colone;
+    }
+
+    public int getNbCoup() {
+        return nbCoup;
+    }
+
+    public void setNbCoup(int nbCoup) {
+        this.nbCoup = nbCoup;
+    }
+
+    public Chronometre getChrono() {
+        return chrono;
+    }
+
+    public void setChrono(Chronometre chrono) {
+        this.chrono = chrono;
+    }
+
+    public Joueur getJoueurencours() {
+        return joueurencours;
+    }
+
+    public void setJoueurencours(Joueur joueurencours) {
+        this.joueurencours = joueurencours;
+    }
+
+    public int getDernierCoupX() {
+        return dernierCoupX;
+    }
+
+    public void setDernierCoupX(int dernierCoupX) {
+        this.dernierCoupX = dernierCoupX;
+    }
+
+    public int getDernierCoupY() {
+        return dernierCoupY;
+    }
+
+    public void setDernierCoupY(int dernierCoupY) {
+        this.dernierCoupY = dernierCoupY;
+    }
+
+    public boolean isProlongation() {
+        return prolongation;
+    }
+
+    public void setProlongation(boolean prolongation) {
+        this.prolongation = prolongation;
+    }
+
+    public int getNumTour() {
+        return numTour;
+    }
+
+    public void setNumTour(int numTour) {
+        this.numTour = numTour;
+    }
+
+    public int getAquiletours() {
+        return aquiletours;
+    }
+
+    public void setAquiletours(int aquiletours) {
+        this.aquiletours = aquiletours;
+    }
+
 }
