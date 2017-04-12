@@ -27,10 +27,16 @@ public class Partie {
     private boolean prolongation;
     private int numTour = 0;
     private int aquiletours;
+    private boolean debutdepartie;
 
     private Partie() {
         tableau = new int[19][19];
         gagnant = false;
+        joueurencours= new Joueur("test", 5);
+        aquiletours = 0;
+        debutdepartie=false;
+        prolongation= false;
+        gagnant=false;
     }
 
     public int ajouterJoueur(String a) {
