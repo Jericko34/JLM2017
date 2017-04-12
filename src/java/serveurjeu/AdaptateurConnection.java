@@ -18,7 +18,7 @@ public class AdaptateurConnection {
     private AdaptateurConnection() {
     }
 
-    private connect ajouterunjoueur(String a) {
+    public connect ajouterunjoueur(String a) {
         switch (Partie.getInstance().ajouterJoueur(a)) {
             case 1:
                 return new connect(Partie.getInstance().getJoueur1().getIdJoueur(), 200, a, Partie.getInstance().getJoueur1().getNumJoueur());
