@@ -5,10 +5,13 @@
  */
 package objetjson;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  *
  * @author Benjamin
  */
+@XmlRootElement(name="connect")
 public class connect {
 
     private String idjoueur;
