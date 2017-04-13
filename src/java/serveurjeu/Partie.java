@@ -115,14 +115,21 @@ public class Partie {
         //Test Diagonale
         if (gagnant == false) {
             for (int z = -4; z < 0; z++) {
-                if (tableau[dernierCoupX - z][dernierCoupY - z] == tableau[dernierCoupX - z + 1][dernierCoupY - z + 1] || tableau[dernierCoupX - z + 1][dernierCoupY - z + 1] == tableau[dernierCoupX - z + 2][dernierCoupY - z + 2] || tableau[dernierCoupX - z + 2][dernierCoupY - z + 2] == tableau[dernierCoupX - z + 3][dernierCoupY - z + 3] || tableau[dernierCoupX - z + 3][dernierCoupY - z + 3] == tableau[dernierCoupX - z + 4][dernierCoupY - z + 4]) {
-                    this.gagnant = true;
-                    this.gagne = this.joueurencours;
-                    break;
+                if ((dernierCoupX - z > 0 || dernierCoupY - z > 0) || (dernierCoupX + 4 < 18 || dernierCoupY + 4 < 18)) {
+                    if (tableau[dernierCoupX - z][dernierCoupY - z] == tableau[dernierCoupX - z + 1][dernierCoupY - z + 1] || tableau[dernierCoupX - z + 1][dernierCoupY - z + 1] == tableau[dernierCoupX - z + 2][dernierCoupY - z + 2] || tableau[dernierCoupX - z + 2][dernierCoupY - z + 2] == tableau[dernierCoupX - z + 3][dernierCoupY - z + 3] || tableau[dernierCoupX - z + 3][dernierCoupY - z + 3] == tableau[dernierCoupX - z + 4][dernierCoupY - z + 4]) {
+                        this.gagnant = true;
+                        this.gagne = this.joueurencours;
+                        break;
+                    }
                 }
             }
             for (int z = -4; z < 0; z++) {
-                if (tableau[dernierCoupX - z][dernierCoupY - z] == tableau[dernierCoupX - z + 1][dernierCoupY - z + 1] || tableau[dernierCoupX - z + 1][dernierCoupY - z + 1] == tableau[dernierCoupX - z + 2][dernierCoupY - z + 2] || tableau[dernierCoupX - z + 2][dernierCoupY - z + 2] == tableau[dernierCoupX - z + 3][dernierCoupY - z + 3] || tableau[dernierCoupX - z + 3][dernierCoupY - z + 3] == tableau[dernierCoupX - z + 4][dernierCoupY - z + 4]) {
+                if ((dernierCoupX - z > 0 || dernierCoupY - z > 0) || (dernierCoupX + 4 < 18 || dernierCoupY + 4 < 18)) {
+                    if (tableau[dernierCoupX - z][dernierCoupY - z] == tableau[dernierCoupX - z + 1][dernierCoupY - z + 1] || tableau[dernierCoupX - z + 1][dernierCoupY - z + 1] == tableau[dernierCoupX - z + 2][dernierCoupY - z + 2] || tableau[dernierCoupX - z + 2][dernierCoupY - z + 2] == tableau[dernierCoupX - z + 3][dernierCoupY - z + 3] || tableau[dernierCoupX - z + 3][dernierCoupY - z + 3] == tableau[dernierCoupX - z + 4][dernierCoupY - z + 4]) {
+                        this.gagnant = true;
+                        this.gagne = this.joueurencours;
+                        break;
+                    }
                 }
             }
         }
