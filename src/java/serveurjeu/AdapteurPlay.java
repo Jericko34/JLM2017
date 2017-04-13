@@ -6,6 +6,7 @@
 package serveurjeu;
 
 import MesDTOs.PlayDTO;
+import java.util.concurrent.TimeUnit;
 
 /**
  *
@@ -37,6 +38,10 @@ public class AdapteurPlay {
 
             }
         }
+    }
+
+    private void waitten() throws InterruptedException {
+        TimeUnit.SECONDS.sleep(3);
     }
 
 }
