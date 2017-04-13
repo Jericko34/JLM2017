@@ -27,9 +27,15 @@ public class Partie {
     private boolean prolongation;
     private int numTour = 0;
     private int aquiletours;
+    private boolean debutdepartie;
 
     private Partie() {
         tableau = new int[19][19];
+        gagnant = false;
+        joueurencours = new Joueur("test", 5);
+        aquiletours = 0;
+        debutdepartie = false;
+        prolongation = false;
         gagnant = false;
     }
 
@@ -90,6 +96,7 @@ public class Partie {
             }
         }
         //Test Colone
+        compteur = 0;
         if (gagnant == false) {
             for (int i = 0; i < 18; i++) {
                 for (int j = 0; j < 17; j++) {
@@ -105,7 +112,20 @@ public class Partie {
                 }
             }
         }
-        //Test Diagonales
+        //Test Diagonale
+        if (gagnant == false) {
+            for (int z = -4; z < 0; z++) {
+                if (tableau[dernierCoupX - z][dernierCoupY - z] == tableau[dernierCoupX - z + 1][dernierCoupY - z + 1] || tableau[dernierCoupX - z + 1][dernierCoupY - z + 1] == tableau[dernierCoupX - z + 2][dernierCoupY - z + 2] || tableau[dernierCoupX - z + 2][dernierCoupY - z + 2] == tableau[dernierCoupX - z + 3][dernierCoupY - z + 3] || tableau[dernierCoupX - z + 3][dernierCoupY - z + 3] == tableau[dernierCoupX - z + 4][dernierCoupY - z + 4]) {
+                    this.gagnant = true;
+                    this.gagne = this.joueurencours;
+                    break;
+                }
+            }
+            for (int z = -4; z < 0; z++) {
+                if (tableau[dernierCoupX - z][dernierCoupY - z] == tableau[dernierCoupX - z + 1][dernierCoupY - z + 1] || tableau[dernierCoupX - z + 1][dernierCoupY - z + 1] == tableau[dernierCoupX - z + 2][dernierCoupY - z + 2] || tableau[dernierCoupX - z + 2][dernierCoupY - z + 2] == tableau[dernierCoupX - z + 3][dernierCoupY - z + 3] || tableau[dernierCoupX - z + 3][dernierCoupY - z + 3] == tableau[dernierCoupX - z + 4][dernierCoupY - z + 4]) {
+                }
+            }
+        }
     }
 
     private int getJoueurNum(String a) {
@@ -119,9 +139,13 @@ public class Partie {
     }
 
     public Joueur getjoueurfromid(String a) {
-        if (joueur1.getIdJoueur()==a){return joueur1;}
-        else if (joueur2.getIdJoueur()==a){return joueur2;}
-        else return null;
+        if (joueur1.getIdJoueur() == a) {
+            return joueur1;
+        } else if (joueur2.getIdJoueur() == a) {
+            return joueur2;
+        } else {
+            return null;
+        }
     }
 
     public boolean isJoueurAllowed(String a) {
@@ -250,5 +274,4 @@ public class Partie {
     public void setAquiletours(int aquiletours) {
         this.aquiletours = aquiletours;
     }
-
 }
