@@ -27,7 +27,7 @@ public class AdapteurPlay {
     }
 
     public PlayDTO play(int a, int b, String c) {
-        if (Partie.getInstance().getJoueurencours().getIdJoueur() != Partie.getInstance().getjoueurfromid(c).getIdJoueur()) {
+        if (!Partie.getInstance().getJoueurencours().getIdJoueur().equals(c)) {
             return new PlayDTO(401);
         } else if (Chronometre.getInstance().stop() > 10) {
             Chronometre.getInstance().reset();
@@ -39,6 +39,7 @@ public class AdapteurPlay {
             switch (Partie.getInstance().positionner(a, b, c)) {
                 case 1:
                     Chronometre.getInstance().start();
+                    Partie.getInstance().setJoueurencours(Partie.getInstance().getAutreJoueur());
                     return new PlayDTO(200);
                 default:
                     Chronometre.getInstance().start();

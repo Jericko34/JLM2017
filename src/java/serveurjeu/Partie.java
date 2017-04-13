@@ -82,9 +82,9 @@ public class Partie {
     }
 
     private void testVictoire() {
-        testTenaille();
-        testVictoireTenaille();
-        testVictoireLigne();
+       // testTenaille();
+       // testVictoireTenaille();
+       // testVictoireLigne();
         this.numTour++;
     }
 
