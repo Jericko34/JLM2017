@@ -200,10 +200,13 @@ var Controller = {
             $("#entryBox").hide("slide");
             $("#inGame").show();
             log("join slide");
-
-
-//			socket.emit('joinGame', GAMECODE);
         });
+
+        $("#getPartie").click(function () {
+            log("recupère la partie");
+            getPartie();
+        });
+
         Controller.xSpaces = xSpaces;
         Controller.ySpaces = ySpaces;
     },
@@ -229,25 +232,54 @@ var Controller = {
     }
 };
 
-/********************
- URL Handeling
- ********************/
 
-if (window.location.hash) {
-    var hash = window.location.hash.substring(2);
+$(document).ready(function () {
     View.init();
     Controller.init(19, 19);
-//	socket.emit('joinGame', hash);
-//	$("#entryBox").hide();
     $("#inGame").show();
+
+});
+
+/********************
+ Communication serveur par WS
+ ********************/
+
+function getPartie() {
+    $.ajax({
+        type: "Get",
+        url: "Members.asmx/GetMemberDetails",
+        data:"{}",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: OnGetMemberSuccess,
+        error: OnGetMemberError
+    });
 }
 
-window.onhashchange = function () {
-    if (!window.location.hash) {
-        $("#entryBox").show();
-        $("#inGame").hide();
-    }
-};
+
+function OnGetMemberSuccess(data, status) {
+    alert("OK");
+}
+
+function OnGetMemberError(data, status) {
+    alert("ça pète");
+}
+
+//if (window.location.hash) {
+//    var hash = window.location.hash.substring(2);
+//    View.init();
+//    Controller.init(19, 19);
+////	socket.emit('joinGame', hash);
+////	$("#entryBox").hide();
+//    $("#inGame").show();
+//}
+
+//window.onhashchange = function () {
+//    if (!window.location.hash) {
+//        $("#entryBox").show();
+//        $("#inGame").hide();
+//    }
+//};
 
 /***************************
  Socket Communication

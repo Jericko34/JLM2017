@@ -30,6 +30,7 @@ public class ApplicationConfig extends Application {
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(WebService.ConnectResource.class);
+        resources.add(WebService.PartieIHMResource.class);
         resources.add(WebService.PlayResource.class);
         resources.add(WebService.TurnResource.class);
     }
