@@ -63,6 +63,7 @@ public class Partie {
         } else {
             joueurencours = joueur2;
         }
+        Chronometre.getInstance().start();
     }
 
     public int positionner(int a, int b, String c) {
@@ -88,6 +89,46 @@ public class Partie {
     }
 
     public void testTenaille() {
+        int recherche;
+        if (joueurencours.getNumJoueur() == 1) {
+            recherche = 2;
+        } else {
+            recherche = 1;
+        }
+        if (dernierCoupY < 18 && tableau[dernierCoupX][dernierCoupY] == tableau[dernierCoupX][dernierCoupY + 3] && tableau[dernierCoupX][dernierCoupY + 1] == recherche && tableau[dernierCoupX][dernierCoupY + 2] == recherche) {
+            tableau[dernierCoupX][dernierCoupY + 1] = 0;
+            tableau[dernierCoupX][dernierCoupY + 2] = 0;
+            joueurencours.setNbreTenaille(joueurencours.getNbreTenaille() + 1);
+        } else if (dernierCoupY > 0 && tableau[dernierCoupX][dernierCoupY] == tableau[dernierCoupX][dernierCoupY - 3] && tableau[dernierCoupX][dernierCoupY - 1] == recherche && tableau[dernierCoupX][dernierCoupY - 2] == recherche) {
+            tableau[dernierCoupX][dernierCoupY - 1] = 0;
+            tableau[dernierCoupX][dernierCoupY - 2] = 0;
+            joueurencours.setNbreTenaille(joueurencours.getNbreTenaille() + 1);
+        } else if (dernierCoupX < 18 && tableau[dernierCoupX + 3][dernierCoupY] == tableau[dernierCoupX][dernierCoupY] && tableau[dernierCoupX + 1][dernierCoupY] == recherche && tableau[dernierCoupX + 2][dernierCoupY] == recherche) {
+            tableau[dernierCoupX + 1][dernierCoupY] = 0;
+            tableau[dernierCoupX + 2][dernierCoupY] = 0;
+            joueurencours.setNbreTenaille(joueurencours.getNbreTenaille() + 1);
+        } else if (dernierCoupY > 0 && tableau[dernierCoupX - 3][dernierCoupY] == tableau[dernierCoupX][dernierCoupY] && tableau[dernierCoupX - 1][dernierCoupY] == recherche && tableau[dernierCoupX - 2][dernierCoupY] == recherche) {
+            tableau[dernierCoupX - 1][dernierCoupY] = 0;
+            tableau[dernierCoupX - 2][dernierCoupY] = 0;
+            joueurencours.setNbreTenaille(joueurencours.getNbreTenaille() + 1);
+            //
+        } else if (dernierCoupX < 18 && tableau[dernierCoupX + 3][dernierCoupY + 3] == tableau[dernierCoupX][dernierCoupY] && tableau[dernierCoupX + 1][dernierCoupY + 1] == recherche && tableau[dernierCoupX + 2][dernierCoupY + 2] == recherche) {
+            tableau[dernierCoupX + 1][dernierCoupY + 1] = 0;
+            tableau[dernierCoupX + 2][dernierCoupY + 2] = 0;
+            joueurencours.setNbreTenaille(joueurencours.getNbreTenaille() + 1);
+        } else if (dernierCoupX < 18 && tableau[dernierCoupX - 3][dernierCoupY] == tableau[dernierCoupX][dernierCoupY] && tableau[dernierCoupX - 1][dernierCoupY] == recherche && tableau[dernierCoupX - 2][dernierCoupY - 2] == recherche) {
+            tableau[dernierCoupX - 1][dernierCoupY - 1] = 0;
+            tableau[dernierCoupX - 2][dernierCoupY - 2] = 0;
+            joueurencours.setNbreTenaille(joueurencours.getNbreTenaille() + 1);
+        } else if (dernierCoupX < 18 && tableau[dernierCoupX + 3][dernierCoupY - 3] == tableau[dernierCoupX][dernierCoupY] && tableau[dernierCoupX + 1][dernierCoupY - 1] == recherche && tableau[dernierCoupX + 2][dernierCoupY - 2] == recherche) {
+            tableau[dernierCoupX + 1][dernierCoupY - 1] = 0;
+            tableau[dernierCoupX + 2][dernierCoupY - 2] = 0;
+            joueurencours.setNbreTenaille(joueurencours.getNbreTenaille() + 1);
+        } else if (dernierCoupX < 18 && tableau[dernierCoupX + 3][dernierCoupY] == tableau[dernierCoupX][dernierCoupY] && tableau[dernierCoupX - 1][dernierCoupY + 1] == recherche && tableau[dernierCoupX - 2][dernierCoupY + 2] == recherche) {
+            tableau[dernierCoupX - 1][dernierCoupY + 1] = 0;
+            tableau[dernierCoupX - 2][dernierCoupY + 2] = 0;
+            joueurencours.setNbreTenaille(joueurencours.getNbreTenaille() + 1);
+        }
     }
 
     public void testVictoireTenaille() {
@@ -192,6 +233,14 @@ public class Partie {
             INSTANCE = new Partie();
         }
         return INSTANCE;
+    }
+
+    public Joueur getAutreJoueur() {
+        if (joueurencours == joueur1) {
+            return joueur2;
+        } else {
+            return joueur1;
+        }
     }
 
     public Joueur getJoueur1() {
