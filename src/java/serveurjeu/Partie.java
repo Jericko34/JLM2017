@@ -5,6 +5,8 @@
  */
 package serveurjeu;
 
+import java.util.Random;
+
 /**
  *
  * @author Benjamin
@@ -45,9 +47,21 @@ public class Partie {
             return 1;
         } else if (joueur2 == null) {
             joueur2 = new Joueur(a, 2);
-            return 1;
+            lancerpartie();
+            return 2;
         } else {
             return 0;
+        }
+    }
+
+    private void lancerpartie() {
+        int a;
+        Random rand = new Random();
+        a = 1 + rand.nextInt(1);
+        if (a == 1) {
+            joueurencours = joueur1;
+        } else {
+            joueurencours = joueur2;
         }
     }
 
@@ -115,8 +129,8 @@ public class Partie {
         //Test Diagonale
         if (gagnant == false) {
             for (int z = -4; z < 0; z++) {
-                if ((dernierCoupX - z > 0 || dernierCoupY - z > 0) || (dernierCoupX + 4 < 18 || dernierCoupY + 4 < 18)) {
-                    if (tableau[dernierCoupX - z][dernierCoupY - z] == tableau[dernierCoupX - z + 1][dernierCoupY - z + 1] || tableau[dernierCoupX - z + 1][dernierCoupY - z + 1] == tableau[dernierCoupX - z + 2][dernierCoupY - z + 2] || tableau[dernierCoupX - z + 2][dernierCoupY - z + 2] == tableau[dernierCoupX - z + 3][dernierCoupY - z + 3] || tableau[dernierCoupX - z + 3][dernierCoupY - z + 3] == tableau[dernierCoupX - z + 4][dernierCoupY - z + 4]) {
+                if ((dernierCoupX + z > 0 || dernierCoupY + z > 0) || (dernierCoupX + 4 < 18 || dernierCoupY + 4 < 18)) {
+                    if (tableau[dernierCoupX + z][dernierCoupY + z] == tableau[dernierCoupX + z + 1][dernierCoupY + z + 1] || tableau[dernierCoupX + z + 1][dernierCoupY + z + 1] == tableau[dernierCoupX + z + 2][dernierCoupY + z + 2] || tableau[dernierCoupX + z + 2][dernierCoupY + z + 2] == tableau[dernierCoupX + z + 3][dernierCoupY + z + 3] || tableau[dernierCoupX + z + 3][dernierCoupY + z + 3] == tableau[dernierCoupX + z + 4][dernierCoupY + z + 4]) {
                         this.gagnant = true;
                         this.gagne = this.joueurencours;
                         break;
@@ -125,7 +139,7 @@ public class Partie {
             }
             for (int z = -4; z < 0; z++) {
                 if ((dernierCoupX - z > 0 || dernierCoupY - z > 0) || (dernierCoupX + 4 < 18 || dernierCoupY + 4 < 18)) {
-                    if (tableau[dernierCoupX - z][dernierCoupY - z] == tableau[dernierCoupX - z + 1][dernierCoupY - z + 1] || tableau[dernierCoupX - z + 1][dernierCoupY - z + 1] == tableau[dernierCoupX - z + 2][dernierCoupY - z + 2] || tableau[dernierCoupX - z + 2][dernierCoupY - z + 2] == tableau[dernierCoupX - z + 3][dernierCoupY - z + 3] || tableau[dernierCoupX - z + 3][dernierCoupY - z + 3] == tableau[dernierCoupX - z + 4][dernierCoupY - z + 4]) {
+                    if (tableau[dernierCoupX - z][dernierCoupY + z] == tableau[dernierCoupX - z + 1][dernierCoupY + z + 1] || tableau[dernierCoupX - z + 1][dernierCoupY + z + 1] == tableau[dernierCoupX - z + 2][dernierCoupY + z + 2] || tableau[dernierCoupX - z + 2][dernierCoupY + z + 2] == tableau[dernierCoupX - z + 3][dernierCoupY + z + 3] || tableau[dernierCoupX - z + 3][dernierCoupY + z + 3] == tableau[dernierCoupX - z + 4][dernierCoupY + z + 4]) {
                         this.gagnant = true;
                         this.gagne = this.joueurencours;
                         break;
