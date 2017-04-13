@@ -110,10 +110,10 @@ var View = {
             for (j = 0; j < ySpaces; j++) {
                 x = spaceSize * 1.5 + i * spaceSize;
                 y = spaceSize / 2 + j * spaceSize;
-                if (Model.board[i][j] === 0) {
-                    View.drawPiece(x, y, 0);
-                } else if (Model.board[i][j] === 1) {
+                if (Model.board[i][j] === 1) {
                     View.drawPiece(x, y, 1);
+                } else if (Model.board[i][j] === 2) {
+                    View.drawPiece(x, y, 2);
                 }
             }
         }
@@ -155,7 +155,7 @@ var View = {
     drawPiece: function (x, y, player) {
         log("drawing");
         var primaryColor, secondaryColor;
-        if (player === 0) {
+        if (player === 1) {
             primaryColor = View.firstPlayerColor;
             secondaryColor = View.firstPlayerSecondaryColor;
         } else {
@@ -180,89 +180,139 @@ var Controller = {
     ySpaces: null,
     init: function (xSpaces, ySpaces) {
         canvas = document.getElementById("gameCanvas");
-        canvas.addEventListener("click", Controller.onCanvasClick, false);
+//        canvas.addEventListener("click", Controller.onCanvasClick, false);
         $("#endTurn").click(function () {
             log("clicked end turn");
-
-//			socket.emit('endTurn');
+            $("#entryBox").hide("slide");
+            $("#inGame").show();
+            abortTimer();
         });
         $("#newGame").click(function () {
             log("clicked new game");
             $("#entryBox").hide("slide");
             $("#inGame").show();
 
-//			socket.emit('newBoard', {xBoardSize: 19, yBoardSize: 19});
-        });
-        $("#join").click(function () {
-            log("clicked join game");
-            GAMECODE = $("#gameCode").val();
-            log("Entered code: " + GAMECODE);
-            $("#entryBox").hide("slide");
-            $("#inGame").show();
-            log("join slide");
+            InitialiseNewPartie();
+
         });
 
         $("#getPartie").click(function () {
             log("recupère la partie");
-            getPartie();
+            getInfosPartie();
         });
 
         Controller.xSpaces = xSpaces;
         Controller.ySpaces = ySpaces;
     },
-    onCanvasClick: function (ev) {
-        var spaceWidth = canvas.width / Controller.xSpaces;
-        var spaceHeight = canvas.height / Controller.ySpaces;
-        var spaceSize = 494 / Controller.ySpaces;
-        log("spaceSize: " + spaceSize);
-        var x = ev.clientX - canvas.offsetLeft + $(window).scrollLeft();
-        log("x: " + x);
-        var y = ev.clientY - canvas.offsetTop + $(window).scrollTop();
-        log("y: " + y);
-        var xSpace = Math.round((x - (x % spaceSize) - spaceSize) / spaceSize);
-        var ySpace = Math.round((y - (y % spaceSize)) / spaceSize);
-
-        // Request to play at postion (xSpace, ySpace)
-//		socket.emit('play', {xPos: xSpace, yPos: ySpace});
-
-        log("Request to play " + xSpace + ", " + ySpace);
-    },
-    doesNotExist: function (hash) {
-        $("#gameCode").val(hash + " is not an existing game");
-    }
+//    onCanvasClick: function (ev) {
+//        var spaceWidth = canvas.width / Controller.xSpaces;
+//        var spaceHeight = canvas.height / Controller.ySpaces;
+//        var spaceSize = 494 / Controller.ySpaces;
+//        log("spaceSize: " + spaceSize);
+//        var x = ev.clientX - canvas.offsetLeft + $(window).scrollLeft();
+//        log("x: " + x);
+//        var y = ev.clientY - canvas.offsetTop + $(window).scrollTop();
+//        log("y: " + y);
+//        var xSpace = Math.round((x - (x % spaceSize) - spaceSize) / spaceSize);
+//        var ySpace = Math.round((y - (y % spaceSize)) / spaceSize);
+//
+//        // Request to play at postion (xSpace, ySpace)
+////		socket.emit('play', {xPos: xSpace, yPos: ySpace});
+//
+//        log("Request to play " + xSpace + ", " + ySpace);
+//    },
+//    doesNotExist: function (hash) {
+//        $("#gameCode").val(hash + " is not an existing game");
+//    }
 };
 
-
+var tid;
+partie = null;
 $(document).ready(function () {
     View.init();
-    Controller.init(19, 19);
+    Controller.init();
     $("#inGame").show();
-
 });
+
+
+function abortTimer() { // to be called when you want to stop the timer
+    clearInterval(tid);
+}
+
+function InitialiseNewPartie()
+{
+    //Initialisation du plateau vide
+    partie = new gameState();
+    ConstruitBoard(19, 19, partie);
+    View.draw(partie);
+
+    //partie pas encore lancé.
+    if (partie != null)
+    {
+        // set interval pour récupérer les infos de la partie;
+        tid = setInterval(getInfosPartie, 2000);
+    }
+}
+
+function ConstruitBoard(boardWidth, boardHeight, Model) {
+    Model.board = new Array(boardWidth);
+    for (var i = 0; i < boardWidth; i++) {
+        Model.board[i] = new Array(boardHeight);
+        var len = boardHeight;
+        while (--len >= 0) {
+            Model.board[i][len] = null;
+        }
+    }
+    GAMESTARTED = true;
+}
+;
+
+
+function gameState() {
+//	this.hash = hash;
+    this.board = [];
+    this.gameStack = [];
+    this.turnStack = [];
+    this.score = {0: 0, 1: 0};
+    this.gameOver = false;
+    this.thisPlayer = 0;
+    this.alreadyPlayed = false;
+}
 
 /********************
  Communication serveur par WS
  ********************/
 
-function getPartie() {
+function getInfosPartie() {
+
+//    alert("ok");
+//    
     $.ajax({
         type: "Get",
-        url: "Members.asmx/GetMemberDetails",
-        data:"{}",
+        url: "http://localhost:8080/JLM2017/webresources/partie/",
+        data: "{}",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
-        success: OnGetMemberSuccess,
-        error: OnGetMemberError
+        success: OnGetInfoPartieSuccess,
+        error: OnGetInfoPartieError
     });
 }
 
+function OnGetInfoPartieSuccess(data, status) {
 
-function OnGetMemberSuccess(data, status) {
-    alert("OK");
+    if (data != null)
+    {
+        partie = new gameState();
+        partie.board = data["tableau"];
+        ConstruitBoard(19, 19, partie);
+        View.draw(partie);
+//        alert(data["tableau"] + " " + status);
+    }
 }
 
-function OnGetMemberError(data, status) {
-    alert("ça pète");
+function OnGetInfoPartieError(data, status) {
+//    alert("ça pète");
+    alert(data + status);
 }
 
 //if (window.location.hash) {
