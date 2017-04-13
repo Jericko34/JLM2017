@@ -66,15 +66,25 @@ public class Partie {
     }
 
     public int positionner(int a, int b, String c) {
-        if (tableau[a][b] == 0) {
+        if (numTour == 2 && 6 < a && a < 12 && 6 < b && b < 12) {
+            return 0;
+        } else if (tableau[a][b] == 0) {
             int val = getJoueurNum(c);
             tableau[a][b] = val;
             this.ligne = a;
             this.colone = b;
+            testVictoire();
             return 1;
         } else {
             return 0;
         }
+    }
+
+    private void testVictoire() {
+        testTenaille();
+        testVictoireTenaille();
+        testVictoireLigne();
+        this.numTour++;
     }
 
     public void testTenaille() {

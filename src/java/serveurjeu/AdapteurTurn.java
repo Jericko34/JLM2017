@@ -20,13 +20,14 @@ public class AdapteurTurn {
 
     public TurnDTO demandertours(String a) {
         if (Partie.getInstance().getJoueur1() != null && Partie.getInstance().getJoueur2() != null) {
-            if (Partie.getInstance().getJoueurencours().getIdJoueur() == null ? a != null : !Partie.getInstance().getJoueurencours().getIdJoueur().equals(a)) {
-                return new TurnDTO(0, Partie.getInstance().getTableau(), Partie.getInstance().getJoueur1().getNbreTenaille(), Partie.getInstance().getJoueur2().getNbreTenaille(), Partie.getInstance().getDernierCoupX(), Partie.getInstance().getDernierCoupY(), Partie.getInstance().isProlongation(), Partie.getInstance().isGagnant(), a, Partie.getInstance().getNumTour(), 401);
-            } else {
+            if (Partie.getInstance().getJoueurencours().getIdJoueur().equals(a)) {
                 return new TurnDTO(1, Partie.getInstance().getTableau(), Partie.getInstance().getJoueur1().getNbreTenaille(), Partie.getInstance().getJoueur2().getNbreTenaille(), Partie.getInstance().getDernierCoupX(), Partie.getInstance().getDernierCoupY(), Partie.getInstance().isProlongation(), Partie.getInstance().isGagnant(), a, Partie.getInstance().getNumTour(), 200);
+            } else {
+                return new TurnDTO(0, Partie.getInstance().getTableau(), Partie.getInstance().getJoueur1().getNbreTenaille(), Partie.getInstance().getJoueur2().getNbreTenaille(), Partie.getInstance().getDernierCoupX(), Partie.getInstance().getDernierCoupY(), Partie.getInstance().isProlongation(), Partie.getInstance().isGagnant(), a, Partie.getInstance().getNumTour(), 401);
             }
+        } else {
+            return new TurnDTO(0, Partie.getInstance().getTableau(), 0, 0, 0, 0, false, false, a, 0, 0);
         }
-        else {return new TurnDTO(0, Partie.getInstance().getTableau(), 0, 0, 0, 0, false, false, a, 0, 0);}
     }
 
     public static AdapteurTurn getInstance() {
