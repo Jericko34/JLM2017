@@ -14,17 +14,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name="connect")
 public class ConnectDTO {
 
-    private String idjoueur;
+    private String idJoueur;
     private int code;
-    private String nomjoueur;
-    private int numjoueur;
+    private String nomJoueur;
+    private int numJoueur;
 
     public String getIdjoueur() {
-        return idjoueur;
+        return idJoueur;
     }
 
     public void setIdjoueur(String idjoueur) {
-        this.idjoueur = idjoueur;
+        this.idJoueur = idjoueur;
     }
 
     public int getCode() {
@@ -36,28 +36,28 @@ public class ConnectDTO {
     }
 
     public String getNomjoueur() {
-        return nomjoueur;
+        return nomJoueur;
     }
 
     public void setNomjoueur(String nomjoueur) {
-        this.nomjoueur = nomjoueur;
+        this.nomJoueur = nomjoueur;
     }
 
     public int getNumjoueur() {
-        return numjoueur;
+        return numJoueur;
     }
 
     public void setNumjoueur(int numjoueur) {
-        this.numjoueur = numjoueur;
+        this.numJoueur = numjoueur;
     }
 
     public ConnectDTO() {
     }
     
     public ConnectDTO(String a, int b, String c, int d) {
-        this.idjoueur = a;
+        this.idJoueur = a;
         this.code = b;
-        this.nomjoueur = c;
-        this.numjoueur = d;
+        this.nomJoueur = c;
+        this.numJoueur = d;
     }
 }
