@@ -82,10 +82,10 @@ public class Partie {
     }
 
     private void testVictoire() {
-       // testTenaille();
-       // testVictoireTenaille();
-       // testVictoireLigne();
-        this.numTour++;
+       testTenaille();
+       testVictoireTenaille();
+       testVictoireLigne();
+       this.numTour++;
     }
 
     public void testTenaille() {
@@ -107,24 +107,24 @@ public class Partie {
             tableau[dernierCoupX + 1][dernierCoupY] = 0;
             tableau[dernierCoupX + 2][dernierCoupY] = 0;
             joueurencours.setNbreTenaille(joueurencours.getNbreTenaille() + 1);
-        } else if (dernierCoupY > 0 && tableau[dernierCoupX - 3][dernierCoupY] == tableau[dernierCoupX][dernierCoupY] && tableau[dernierCoupX - 1][dernierCoupY] == recherche && tableau[dernierCoupX - 2][dernierCoupY] == recherche) {
+        } else if (dernierCoupX > 0 && tableau[dernierCoupX - 3][dernierCoupY] == tableau[dernierCoupX][dernierCoupY] && tableau[dernierCoupX - 1][dernierCoupY] == recherche && tableau[dernierCoupX - 2][dernierCoupY] == recherche) {
             tableau[dernierCoupX - 1][dernierCoupY] = 0;
             tableau[dernierCoupX - 2][dernierCoupY] = 0;
             joueurencours.setNbreTenaille(joueurencours.getNbreTenaille() + 1);
             //
-        } else if (dernierCoupX < 18 && tableau[dernierCoupX + 3][dernierCoupY + 3] == tableau[dernierCoupX][dernierCoupY] && tableau[dernierCoupX + 1][dernierCoupY + 1] == recherche && tableau[dernierCoupX + 2][dernierCoupY + 2] == recherche) {
+        } else if (dernierCoupX < 18 && dernierCoupY<18 && tableau[dernierCoupX + 3][dernierCoupY + 3] == tableau[dernierCoupX][dernierCoupY] && tableau[dernierCoupX + 1][dernierCoupY + 1] == recherche && tableau[dernierCoupX + 2][dernierCoupY + 2] == recherche) {
             tableau[dernierCoupX + 1][dernierCoupY + 1] = 0;
             tableau[dernierCoupX + 2][dernierCoupY + 2] = 0;
             joueurencours.setNbreTenaille(joueurencours.getNbreTenaille() + 1);
-        } else if (dernierCoupX < 18 && tableau[dernierCoupX - 3][dernierCoupY] == tableau[dernierCoupX][dernierCoupY] && tableau[dernierCoupX - 1][dernierCoupY] == recherche && tableau[dernierCoupX - 2][dernierCoupY - 2] == recherche) {
+        } else if (dernierCoupX >0&& dernierCoupY>0 && tableau[dernierCoupX - 3][dernierCoupY] == tableau[dernierCoupX][dernierCoupY] && tableau[dernierCoupX - 1][dernierCoupY] == recherche && tableau[dernierCoupX - 2][dernierCoupY - 2] == recherche) {
             tableau[dernierCoupX - 1][dernierCoupY - 1] = 0;
             tableau[dernierCoupX - 2][dernierCoupY - 2] = 0;
             joueurencours.setNbreTenaille(joueurencours.getNbreTenaille() + 1);
-        } else if (dernierCoupX < 18 && tableau[dernierCoupX + 3][dernierCoupY - 3] == tableau[dernierCoupX][dernierCoupY] && tableau[dernierCoupX + 1][dernierCoupY - 1] == recherche && tableau[dernierCoupX + 2][dernierCoupY - 2] == recherche) {
+        } else if (dernierCoupX < 18 && dernierCoupY<18&& tableau[dernierCoupX + 3][dernierCoupY - 3] == tableau[dernierCoupX][dernierCoupY] && tableau[dernierCoupX + 1][dernierCoupY - 1] == recherche && tableau[dernierCoupX + 2][dernierCoupY - 2] == recherche) {
             tableau[dernierCoupX + 1][dernierCoupY - 1] = 0;
             tableau[dernierCoupX + 2][dernierCoupY - 2] = 0;
             joueurencours.setNbreTenaille(joueurencours.getNbreTenaille() + 1);
-        } else if (dernierCoupX < 18 && tableau[dernierCoupX + 3][dernierCoupY] == tableau[dernierCoupX][dernierCoupY] && tableau[dernierCoupX - 1][dernierCoupY + 1] == recherche && tableau[dernierCoupX - 2][dernierCoupY + 2] == recherche) {
+        } else if (dernierCoupX >0 && dernierCoupY>0 && tableau[dernierCoupX + 3][dernierCoupY] == tableau[dernierCoupX][dernierCoupY] && tableau[dernierCoupX - 1][dernierCoupY + 1] == recherche && tableau[dernierCoupX - 2][dernierCoupY + 2] == recherche) {
             tableau[dernierCoupX - 1][dernierCoupY + 1] = 0;
             tableau[dernierCoupX - 2][dernierCoupY + 2] = 0;
             joueurencours.setNbreTenaille(joueurencours.getNbreTenaille() + 1);
@@ -201,9 +201,9 @@ public class Partie {
     }
 
     private int getJoueurNum(String a) {
-        if (joueur1.getIdJoueur() == a) {
+        if (joueur1.getIdJoueur().equals(a)) {
             return 1;
-        } else if (joueur2.getIdJoueur() == a) {
+        } else if (joueur2.getIdJoueur().equals(a)) {
             return 2;
         } else {
             return 0;
